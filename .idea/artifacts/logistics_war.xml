@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="logistics:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="logistics.war">
+      <element id="artifact" artifact-name="logistics:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="jpa-descriptors" facet="logistics/jpa/JPA" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
