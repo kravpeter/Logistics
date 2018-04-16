@@ -18,7 +18,7 @@ import java.util.Set;
 public interface UserService {
     void save(User user);
 
-    User findByEmail(String email);
+    User findUserByEmail(String email);
     /*@Autowired
     UserRepository userRepository;
     */

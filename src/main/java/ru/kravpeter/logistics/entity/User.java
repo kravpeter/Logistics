@@ -9,6 +9,7 @@ public class User {
 
     private String email;
     private String userPassword;
+    private String confirmPassword;
     private String userName;
     private String userSurname;
     private Date userRegDate;
@@ -30,6 +31,9 @@ public class User {
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
     }
+    @Transient
+    public String getConfirmPassword() { return confirmPassword; }
+    public void setConfirmPassword(String confirmPassword) { this.confirmPassword = confirmPassword; }
     @Column (name = "user_name")
     public String getUserName() {
         return userName;

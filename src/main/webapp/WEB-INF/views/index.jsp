@@ -23,13 +23,7 @@
 
 
 <main role="main">
-    <a href="staff"><h1>Manager</h1></a>
-    <a href="driver"><h1>Driver</h1></a>
-    <a href="admin"><h1>Admin</h1></a>
-
-    <a href="login"><h6>Log in</h6></a>
-
-
+    <a href="login"><h6>Log in</h6> for employees</a>
 </main>
 
 

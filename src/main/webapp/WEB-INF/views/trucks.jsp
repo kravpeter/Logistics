@@ -89,45 +89,45 @@
                     </button>
                 </div>
                 <form action="trucks" method="post" modelAttribute="addTruckForm">
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <label for="reg-number-input" class="col-5 col-form-label">Registration number:</label>
-                        <div class="col-5">
-                            <input class="form-control" type="text" value="AA12345" id="reg-number-input" name="reg-number-input">
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="reg-number-input" class="col-5 col-form-label">Registration number:</label>
+                            <div class="col-5">
+                                <input class="form-control" type="text" value="AA12345" id="reg-number-input" name="reg-number-input">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="capacity-input" class="col-5 col-form-label">Vehicle capacity:</label>
-                        <div class="col-5">
-                            <input class="form-control" type="number" value="20" id="capacity-input" name="capacity-input">
+                        <div class="form-group row">
+                            <label for="capacity-input" class="col-5 col-form-label">Vehicle capacity:</label>
+                            <div class="col-5">
+                                <input class="form-control" type="number" value="20" id="capacity-input" name="capacity-input">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="quantity-of-drivers-input" class="col-5 col-form-label">Quantity of drivers:</label>
-                        <div class="col-5">
-                            <input class="form-control" type="number" value="2" id="quantity-of-drivers-input" name="quantity-of-drivers-input">
+                        <div class="form-group row">
+                            <label for="quantity-of-drivers-input" class="col-5 col-form-label">Quantity of drivers:</label>
+                            <div class="col-5">
+                                <input class="form-control" type="number" value="2" id="quantity-of-drivers-input" name="quantity-of-drivers-input">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="condition-select" class="col-5 col-form-label">Vehicle condition:</label>
-                        <div class="col-5">
-                            <select class="custom-select" name="condition-select">
+                        <div class="form-group row">
+                            <label for="condition-select" class="col-5 col-form-label">Vehicle condition:</label>
+                            <div class="col-5">
+                                <select class="custom-select" name="condition-select">
                                     <option value="1">working</option>
                                     <option value="0">in service</option>
-                            </select>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city-select" class="col-5 col-form-label">Select the current city:</label>
+                            <div class="col-5">
+                                <select class="custom-select" name="city-select">
+                                    <c:forEach items="${citiesList}" var="city">
+                                        <option value="${city.cityId}">${city.cityName}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="city-select" class="col-5 col-form-label">Select the current city:</label>
-                        <div class="col-5">
-                            <select class="custom-select" name="city-select">
-                                <c:forEach items="${citiesList}" var="city">
-                                    <option value="${city.cityId}">${city.cityName}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Add vehicle</button>
