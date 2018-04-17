@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kravpeter.logistics.entity.City;
-import ru.kravpeter.logistics.entity.Truck;
 import ru.kravpeter.logistics.service.TruckService;
 
 @Controller

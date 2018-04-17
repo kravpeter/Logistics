@@ -12,6 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import ru.kravpeter.logistics.service.UserDetailsServiceImpl;
 
 @Configuration
@@ -58,11 +60,17 @@ public DaoAuthenticationProvider authenticationProvider() {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        http.addFilterBefore(filter, CsrfFilter.class);
+
         http
             .authorizeRequests()
-            .antMatchers( "/", "/index").access("permitAll()")
+            .antMatchers( "/", "/index","/resources/**").access("permitAll()")
             .antMatchers( "/admin/**").access("hasRole('ROLE_ADMIN')")
-            .antMatchers("/staff/**").access("hasRole('ROLE_MANAGER')")
+            .antMatchers("/staff/**", "/cities/**", "/trucks/**", "/drivers/**").access("hasRole('ROLE_MANAGER')")
             .antMatchers("/driver/**").access("hasRole('ROLE_DRIVER')")
             .anyRequest().authenticated()
             .and()

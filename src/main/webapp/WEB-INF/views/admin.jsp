@@ -15,8 +15,6 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
-
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/custom.css"/>">
 
 </head>
@@ -73,7 +71,7 @@
         <spring:bind path="userPassword">
             <label for="userPassword" class="col-3 col-form-label">Password:</label>
         <div class="col-3 form-group row ${status.error ? 'has-error' : ''}">
-            <form:input type="text" path="userPassword" class="form-control"/>
+            <form:input type="password" path="userPassword" class="form-control"/>
             <form:errors path="userPassword"/>
         </div>
         </spring:bind>
@@ -83,7 +81,7 @@
         <spring:bind path="confirmPassword">
             <label for="confirmPassword" class="col-3 col-form-label">Confirm password:</label>
             <div class="col-3 form-group row ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="confirmPassword" class="form-control"/>
+                <form:input type="password" path="confirmPassword" class="form-control"/>
                 <form:errors path="confirmPassword"/>
             </div>
         </spring:bind>

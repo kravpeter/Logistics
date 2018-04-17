@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<c:url value="/resources/img/truck-front.png"/>" />
+    <link rel="icon" href="<c:url value="/resources/img/truck-front.png"/>">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css"/>">
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="<c:url value="/resources/css/signin.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/resources/css/signin.css"/>">
     <title>Sign in Logistics</title>
 </head>
 
@@ -31,5 +31,13 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     <!--<p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>-->
 </form>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/resources/js/jquery-slim.min.js"><\/script>')</script>
+<script src="<c:url value="/resources/js/popper.min.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

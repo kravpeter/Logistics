@@ -12,8 +12,8 @@ public class StartPageController {
     @GetMapping("/success")
     public String getStartPage(HttpServletRequest req, HttpServletResponse resp){
         if (req.isUserInRole("ROLE_ADMIN")) return "redirect:/admin";
-        else if (req.isUserInRole("ROLE_MANAGER")) return  "staff";
-        else if (req.isUserInRole("ROLE_DRIVER")) return  "driver";
+        else if (req.isUserInRole("ROLE_MANAGER")) return  "redirect:/staff";
+        else if (req.isUserInRole("ROLE_DRIVER")) return  "redirect:/driver";
         return "index";
     }
 }

@@ -25,12 +25,14 @@ public class LoginController {
     UserValidator userValidator;
 
     @GetMapping("/login")
-    public String login(Model model, String error) {
+    public String login(Model model, String error, String logout) {
 
         if (error != null) {
             model.addAttribute("error", "Username or password is incorrect.");
         }
-
+        if (logout != null) {
+            model.addAttribute("message", "Logged out successfully.");
+        }
         return "login";
     }
 

@@ -11,6 +11,7 @@ public class StaffController {
 
     @GetMapping("/staff")
     public String nothing(Model model) {
+
         return "staff";
     }
 }

@@ -19,9 +19,9 @@ public class CityService {
 
     @Transactional
     public City addCity(String cityName){
-        City city = new City(cityName);
-        city = cityRepository.save(city);
-        cityRepository.flush();
+        City city = new City();
+        city.setCityName(cityName);
+        cityRepository.saveAndFlush(city);
         return city;
     }
 

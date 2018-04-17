@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -38,6 +39,9 @@
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="drivers">DRIVERS<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="cities">CITIES<span class="sr-only">(current)</span></a>
             </li>
         </ul>
 
@@ -88,7 +92,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="trucks" method="post" modelAttribute="addTruckForm">
+                <form:form action="trucks" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
                             <label for="reg-number-input" class="col-5 col-form-label">Registration number:</label>
@@ -109,18 +113,18 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="condition-select" class="col-5 col-form-label">Vehicle condition:</label>
+                            <label for="conditionSelect" class="col-5 col-form-label">Vehicle condition:</label>
                             <div class="col-5">
-                                <select class="custom-select" name="condition-select">
+                                <select id="conditionSelect" class="custom-select" name="condition-select">
                                     <option value="1">working</option>
                                     <option value="0">in service</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="city-select" class="col-5 col-form-label">Select the current city:</label>
+                            <label for="citySelect" class="col-5 col-form-label">Select the current city:</label>
                             <div class="col-5">
-                                <select class="custom-select" name="city-select">
+                                <select id="citySelect" class="custom-select" name="city-select">
                                     <c:forEach items="${citiesList}" var="city">
                                         <option value="${city.cityId}">${city.cityName}</option>
                                     </c:forEach>
@@ -132,7 +136,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Add vehicle</button>
                 </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
@@ -146,7 +150,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="trucks" method="post" modelAttribute="editTruckForm">
+                <form:form action="trucks" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
                             <label for="reg-number-input" class="col-5 col-form-label">Registration number:</label>
@@ -194,7 +198,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Edit vehicle</button>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
@@ -208,12 +212,12 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/trucks/delete" method="post" modelAttribute="deleteTruckForm">
+                <form:form action="/trucks/delete" method="post">
                     <div class="modal-body">
                         <div class="form-group row">
-                            <label for="city-select" class="col-5 col-form-label">Vehicle's registration number:</label>
+                            <label for="city-sel" class="col-5 col-form-label">Vehicle's registration number:</label>
                             <div class="col-5">
-                                <select class="custom-select" id="reg-number-select" name="reg-number-select">
+                                <select id="city-sel" class="custom-select" id="reg-number-select" name="reg-number-select">
                                     <c:forEach items="${truckAndCitiesList}" var="truck">
                                         <option value="${truck.truckRegNumber}">${truck.truckRegNumber}</option>
                                     </c:forEach>
@@ -225,7 +229,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary" value="delete">Delete vehicle</button>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
