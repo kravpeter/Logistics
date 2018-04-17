@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.kravpeter.logistics.service.SecurityService;
 import ru.kravpeter.logistics.service.SecurityServiceImpl;
 import ru.kravpeter.logistics.service.UserService;
+import ru.kravpeter.logistics.validator.UserValidator;
 
 @Controller
 @RequestMapping("/")
@@ -20,8 +21,16 @@ public class LoginController {
     @Autowired
     SecurityService securityService;
 
+    @Autowired
+    UserValidator userValidator;
+
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model, String error) {
+
+        if (error != null) {
+            model.addAttribute("error", "Username or password is incorrect.");
+        }
+
         return "login";
     }
 

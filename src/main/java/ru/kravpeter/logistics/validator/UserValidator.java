@@ -1,6 +1,7 @@
 package ru.kravpeter.logistics.validator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -40,5 +41,11 @@ public class UserValidator implements Validator {
         if (!user.getConfirmPassword().equals(user.getUserPassword())) {
             errors.rejectValue("confirmPassword", "Different.userForm.userPassword");
         }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "Required");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userSurname", "Required");
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userPhoneNumber", "Required");
+
     }
 }

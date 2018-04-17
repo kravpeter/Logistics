@@ -14,7 +14,12 @@ import ru.kravpeter.logistics.service.CityService;
 public class IndexController {
 
     @GetMapping(value = {"/", "/index"})
-    public String greeting(Model model) {
+    public String greeting(Model model, String logout) {
+
+        if (logout != null) {
+            model.addAttribute("message", "Logged out successfully.");
+        }
+
         return "index";
     }
 

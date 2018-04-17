@@ -14,7 +14,7 @@ public class AppConfig {
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasenames("validation.properties");
+        messageSource.setBasenames("classpath:validation");
         // if true, the key of the message will be displayed if the key is not
         // found, instead of throwing a NoSuchMessageException
         messageSource.setUseCodeAsDefaultMessage(true);
