@@ -2,13 +2,14 @@ package ru.kravpeter.logistics.entity;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name="trucks")
-public class Truck {
+public class Truck implements Serializable{
 
     private String truckRegNumber;
     private short truckCapacity;

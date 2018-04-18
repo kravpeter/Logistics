@@ -1,10 +1,11 @@
 package ru.kravpeter.logistics.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="cities")
-public class City {
+public class City implements Serializable{
 
     private int cityId;
     private String cityName;
