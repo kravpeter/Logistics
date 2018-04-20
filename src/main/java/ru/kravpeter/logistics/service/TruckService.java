@@ -30,6 +30,12 @@ public class TruckService {
     public List<City> getCities(){ return cityRepository.findAll();}
 
     @Transactional
+    public List<Truck> getTrucksByCity(City city){ return truckRepository.findTrucksByCity(city);}
+
+    @Transactional
+    public Truck findTrucksByTruckRegNumber(String truckRegNumber){ return truckRepository.findById(truckRegNumber).get();}
+
+    @Transactional
     public Truck addTruck(String truckRegNumber, short truckCapacity, short truckQuantityOfDrivers, boolean truckCondition, City city) {
         Truck truck = new Truck();
         truck.setTruckRegNumber(truckRegNumber);

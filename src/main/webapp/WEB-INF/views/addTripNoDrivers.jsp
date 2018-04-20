@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
@@ -11,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
     <link rel="icon" href="<c:url value="/resources/img/truck-front.png"/>">
 
-    <title>Manager's UI: Cities</title>
+    <title>Manager's UI</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
@@ -52,57 +51,12 @@
         </c:if>
     </div>
 </nav>
+
+
 <main role="main">
-    <div class="mx-3 mb-3">
-        <h1>Cities</h1>
-        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#addCity">Add</button>
-    </div>
-    <div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">city name</th>
-            </tr>
-            </thead>
-            <tbody>
-                <c:forEach items="${citiesList}" var="city">
-                    <tr>
-                        <td>${city.cityName}</td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>
-    <!-- Modal Add -->
-    <div class="modal fade" id="addCity" tabindex="-1" role="dialog" aria-labelledby="addCityTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addCityTitle">Add a new city</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form:form action="cities" method="post">
-                    <div class="modal-body">
-                        <div class="form-group row">
-
-                            <label for="cityName" class="col-5 col-form-label">City name:</label>
-                            <div class="col-5">
-                                <input class="form-control" type="text" id="cityName" name="cityName"/>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add city</button>
-                    </div>
-                </form:form>
-            </div>
-        </div>
-    </div>
+    There are no drivers in the city.
 </main>
+
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

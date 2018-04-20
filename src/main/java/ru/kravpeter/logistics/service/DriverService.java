@@ -12,6 +12,7 @@ import ru.kravpeter.logistics.repository.DriverRepository;
 import ru.kravpeter.logistics.repository.TruckRepository;
 import ru.kravpeter.logistics.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,7 +31,19 @@ public class DriverService {
     public List<Driver> getDrivers(){ return driverRepository.findAll();}
 
     @Transactional
+    public List<Integer> getIds(){
+        List<Integer> list = new ArrayList<>();
+        for (Driver driver: driverRepository.findAll()) {
+            list.add(driver.getDriverId());
+        }
+        return list;
+    }
+
+    @Transactional
     public City findCityById(int cityId){ return cityRepository.findByCityId(cityId); }
+
+    @Transactional
+    public List<Driver> getDriversByCity(City city){ return driverRepository.findDriversByDriverCity(city); }
 
     @Transactional
     public List<City> getCities(){ return cityRepository.findAll();}

@@ -43,7 +43,11 @@ public class Trip implements Serializable{
     @OneToMany
     public List<Checkpoint> getTripCheckpoints() { return tripCheckpoints; }
     public void setTripCheckpoints(List<Checkpoint> tripCheckpoints) { this.tripCheckpoints = tripCheckpoints; }
-    @OneToMany(mappedBy = "driverlist.trip_id")
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @JoinTable(name = "driverlist",
+            joinColumns = @JoinColumn(name = "trip_id"),
+            inverseJoinColumns = @JoinColumn(name = "driver_id")
+    )
     public List<Driver> getTripDrivers() { return tripDrivers; }
     public void setTripDrivers(List<Driver> tripDrivers) { this.tripDrivers = tripDrivers; }
 

@@ -1,6 +1,7 @@
 package ru.kravpeter.logistics.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import ru.kravpeter.logistics.entity.City;
 import ru.kravpeter.logistics.entity.Driver;
 import ru.kravpeter.logistics.entity.Truck;
 import ru.kravpeter.logistics.entity.User;
@@ -19,4 +20,6 @@ public interface DriverRepository extends JpaRepository<Driver, String>{
     Driver save(Driver driver);
 
     Driver findDriverByDriverUser(User user);
+
+    List<Driver> findDriversByDriverCity(City city);
 }

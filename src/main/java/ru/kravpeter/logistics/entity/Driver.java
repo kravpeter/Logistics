@@ -35,6 +35,14 @@ public class Driver implements Serializable{
     @JoinColumn(name="driver_current_location")
     public City getDriverCity() { return driverCity; }
     public void setDriverCity(City driverCity) { this.driverCity = driverCity; }
+
+    @Override
+    public String toString() {
+        return driverUser.getUserName() + " " +
+                driverUser.getUserSurname() + " email: " +
+                driverUser.getEmail() + " hours: " +
+                driverHours + ".\n";
+    }
 }
     /*public Driver(User user, City city){
         this.user = user;
