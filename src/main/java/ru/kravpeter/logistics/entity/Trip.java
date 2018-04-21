@@ -10,7 +10,7 @@ import java.util.List;
 public class Trip implements Serializable{
     private long tripId;
     private User tripManager;
-    private short tripStatus;
+    private String tripStatus;
     private Truck tripTruck;
     private Date tripStartDate;
     //private Date tripEndDate;
@@ -25,9 +25,9 @@ public class Trip implements Serializable{
     @JoinColumn(name="trip_manager")
     public User getTripManager() { return tripManager; }
     public void setTripManager(User tripManager) { this.tripManager = tripManager; }
-    @Column(name="trip_is_complete")
-    public short getTripStatus() { return tripStatus; }
-    public void setTripStatus(short tripStatus) { this.tripStatus = tripStatus; }
+    @Column(name= "trip_status")
+    public String getTripStatus() { return tripStatus; }
+    public void setTripStatus(String tripStatus) { this.tripStatus = tripStatus; }
     @ManyToOne
     @JoinColumn(name="truck_reg_number")
     public Truck getTripTruck() { return tripTruck; }
@@ -40,10 +40,17 @@ public class Trip implements Serializable{
     //@Temporal(TemporalType.DATE)
     //public Date getTripEndDate() { return tripEndDate; }
     //public void setTripEndDate(Date tripEndDate) { this.tripEndDate = tripEndDate; }
-    @OneToMany
+    @OneToMany( fetch = FetchType.EAGER,
+                mappedBy = "checkpointTrip",
+                cascade = CascadeType.ALL,
+                orphanRemoval = true )
     public List<Checkpoint> getTripCheckpoints() { return tripCheckpoints; }
     public void setTripCheckpoints(List<Checkpoint> tripCheckpoints) { this.tripCheckpoints = tripCheckpoints; }
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToMany(
+            cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     @JoinTable(name = "driverlist",
             joinColumns = @JoinColumn(name = "trip_id"),
             inverseJoinColumns = @JoinColumn(name = "driver_id")

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -16,7 +17,11 @@
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jumbotron.css"/>">
+
+
+
 </head>
+
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
@@ -52,14 +57,41 @@
 </nav>
 
 
-<main role="main">
 
-    Select drivers:
+<div class="container">
+    <form:form action="/addTrip4" method="post" class="form-inline">
 
-    <iframe width="600" height="450" frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/directions?origin=place_id:ChIJ7WVKx4w3lkYR_46Eqz9nx20&destination=Москва&key=AIzaSyDAr2-0enlpIsUv47z19ZKbDRz4UD0dp8w" allowfullscreen></iframe>
+            <label class="mr-sm-2"> Departure city: ${depCity}</label>
+            <label class="mr-sm2">Loading in/out: In</label>
+            <label class="mr-sm-2" for="CargoTypeInput">Type of cargo</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="CargoTypeInput">
+            <label class="mr-sm-2" for="WeightInput">Weight (ton)</label>
+            <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="WeightInput" placeholder="1">
 
-</main>
+
+            <label class="mr-sm-2" for="CitySelect2">Destination city</label>
+            <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="CitySelect2" name="CitySelect">
+                <option selected>Choose...</option>
+                <c:forEach items="${cities}" var="city">
+                    <option value="${city.cityId}">${city.cityName}</option>
+                </c:forEach>
+            </select>
+            <label class="mr-sm2" for="InOutSelect2">Loading in/out</label>
+            <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="InOutSelect2" name="InOutSelect">
+                <option selected>Choose...</option>
+                <option value="1">In</option>
+                <option value="2">Out</option>
+            </select>
+            <label class="mr-sm-2" for="CargoTypeInput2">Type of cargo</label>
+            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="CargoTypeInput2">
+            <label class="mr-sm-2" for="WeightInput2">Weight (ton)</label>
+            <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="WeightInput2" placeholder="1">
+
+    </form:form>
+
+</div>
+
+
 
 
 <!-- Bootstrap core JavaScript

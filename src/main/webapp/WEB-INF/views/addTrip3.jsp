@@ -56,20 +56,23 @@
     <div class="container">
         <h5>${quantityDrivers}</h5>
         <h5>${chooseDrivers}</h5>
-               <form:form method="POST" modelAttribute="checkedDriverList" action="/addTrip3">
-                    <table>
-                        <tr>
-                            <td><form:checkboxes path="driverList" items="${driverList}"/></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <input type="submit" value="Submit"/>
-                            </td>
-                        </tr>
-
-                    </table>
-                </form:form>
+        <form:form action="/addTrip3" method="post">
+            <table>
+                Drivers
+                <c:forEach items="${driverList}" var="driver">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="driver" value="${driver.driverId}"/>${driver.driverUser.email}
+                    </td>
+                </tr>
+                </c:forEach>
+                <tr>
+                    <td colspan="2">
+                        <center><input type="submit" value="Send"/></center>
+                    </td>
+                </tr>
+            </table>
+        </form:form>
 
     </div>
 

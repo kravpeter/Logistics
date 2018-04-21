@@ -36,23 +36,12 @@ public class TripController {
     private City city;
     private Truck truck;
     private List<Driver> driverList;
-    private GeoApiContext context = new GeoApiContext.Builder()
-            .apiKey("AIzaSyCQff1C2bzv8x4Zq_dk7O78rMl2R1vr7FI")
-            .build();
+
 
 
     @GetMapping("/trips")
     public String getTrips(Model model){
-        DirectionsResult results =DirectionsApi.getDirections(context, "Санкт-Петербург", "Москва").awaitIgnoreError();
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        long dist = 0, dur = 0;
-        for (DirectionsLeg leg: results.routes[0].legs) {
-            dist += leg.distance.inMeters;
-            dur += leg.duration.inSeconds;
-        }
-        dist = dist/1000; dur = dur/3600;
-        model.addAttribute("distance", dist);
-        model.addAttribute("duration", dur);
+        model.addAttribute("trips",tripService.getTrips());
         return "trips";
     }
 

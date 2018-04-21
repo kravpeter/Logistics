@@ -54,10 +54,7 @@
 
 <main role="main">
 
-    <a href="/addTrip5?newRoute=1">Добавить</a>
-    <c:if test="${newRoute}">
 
-    </c:if>
 
 
 </main>

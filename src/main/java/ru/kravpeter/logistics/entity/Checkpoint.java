@@ -11,34 +11,36 @@ public class Checkpoint implements Serializable{
     private long checkpointId;
     private Trip checkpointTrip;
     private List<Cargo> checkpointCargoes;
-    private City checkpointDepCity;
+    //private City checkpointDepCity;
     private City checkpointArrCity;
-    private short checkpointStatus;
+    private String checkpointStatus;
     private Date checkpointActDate;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "checkpoint_id")
     public long getCheckpointId() { return checkpointId; }
     public void setCheckpointId(long checkpointId) { this.checkpointId = checkpointId; }
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="trip_id")
     public Trip getCheckpointTrip() { return checkpointTrip; }
     public void setCheckpointTrip(Trip checkpointTrip) { this.checkpointTrip = checkpointTrip; }
-    @OneToMany
-    @JoinColumn(name="cargo_id")
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "cargoCheckpoint",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     public List<Cargo> getCheckpointCargoes() { return checkpointCargoes; }
     public void setCheckpointCargoes(List<Cargo> checkpointCargoes) { this.checkpointCargoes = checkpointCargoes; }
+    //@ManyToOne
+    //@JoinColumn(name="checkpoint_dep_city")
+    //public City getCheckpointDepCity() { return checkpointDepCity; }
+    //public void setCheckpointDepCity(City checkpointDepCity) { this.checkpointDepCity = checkpointDepCity; }
     @ManyToOne
-    @JoinColumn(name="checkpoint_dep_city")
-    public City getCheckpointDepCity() { return checkpointDepCity; }
-    public void setCheckpointDepCity(City checkpointDepCity) { this.checkpointDepCity = checkpointDepCity; }
-    @ManyToOne
-    @JoinColumn(name="checkpoint_arr_city")
+    @JoinColumn(name= "checkpoint_city")
     public City getCheckpointArrCity() { return checkpointArrCity; }
     public void setCheckpointArrCity(City checkpointArrCity) { this.checkpointArrCity = checkpointArrCity; }
     @Column(name="checkpoint_status")
-    public short getCheckpointStatus() { return checkpointStatus; }
-    public void setCheckpointStatus(short checkpointStatus) { this.checkpointStatus = checkpointStatus; }
+    public String getCheckpointStatus() { return checkpointStatus; }
+    public void setCheckpointStatus(String checkpointStatus) { this.checkpointStatus = checkpointStatus; }
     @Temporal(TemporalType.DATE)
     @Column(name="checkpoint_act_date")
     public Date getCheckpointActDate() { return checkpointActDate; }

@@ -60,9 +60,37 @@
         <a class="btn btn-outline-secondary" href="/addTrip1">Add</a>
     </div>
     <div>
-
-    <h1>Distance — ${distance} км. </h1>
-    <h1>Duration — ${duration} ч. </h1>
+        <table width="100%">
+            <c:forEach items="${trips}" var="trip">
+                <tr>
+                    <td> ${trip.tripId} </td>
+                    <td> ${trip.tripManager.userName}<br>${trip.tripManager.userSurname} </td>
+                    <td> ${trip.tripStatus} </td>
+                    <td> ${trip.tripTruck.truckRegNumber} </td>
+                    <td>
+                        <table>
+                            <c:forEach items="${trip.tripCheckpoints}" var="checkpoint">
+                                        <tr>
+                                            <td> ${checkpoint.checkpointArrCity.cityName} </td>
+                                            <td> ${checkpoint.checkpointStatus} </td>
+                                            <td>
+                                                <table>
+                                                    <c:forEach items="${checkpoint.checkpointCargoes}" var="cargo">
+                                                        <tr>
+                                                            <td> ${cargo.cargoType} </td>
+                                                            <td> ${cargo.cargoWeight} ton</td>
+                                                            <td> ${cargo.cargoStatus} </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </table>
+                                            </td>
+                                        </tr>
+                            </c:forEach>
+                        </table>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 </main>
 

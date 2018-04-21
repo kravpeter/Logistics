@@ -2,6 +2,7 @@ package ru.kravpeter.logistics.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="drivers")
@@ -12,6 +13,7 @@ public class Driver implements Serializable{
     private int driverStatus;
     private Truck driverTruck;
     private City driverCity;
+    //private List<Trip> driverTrips;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="driver_id")
@@ -35,7 +37,16 @@ public class Driver implements Serializable{
     @JoinColumn(name="driver_current_location")
     public City getDriverCity() { return driverCity; }
     public void setDriverCity(City driverCity) { this.driverCity = driverCity; }
+    /*@ManyToMany
+    @JoinTable(name ="driverlist",
+                joinColumns = @JoinColumn(name="driver_id"),
+                inverseJoinColumns = @JoinColumn(name="trip_id"))
+    */
 
+    private List<Trip> driverTrips;
+    @ManyToMany( mappedBy = "tripDrivers" )
+    public List<Trip> getDriverTrips() { return driverTrips; }
+    public void setDriverTrips(List<Trip> driverTrips) { this.driverTrips = driverTrips; }
     @Override
     public String toString() {
         return driverUser.getUserName() + " " +
