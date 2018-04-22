@@ -9,15 +9,18 @@ import ru.kravpeter.logistics.entity.User;
 import java.util.List;
 import java.util.Optional;
 
-public interface DriverRepository extends JpaRepository<Driver, String>{
+public interface DriverRepository extends JpaRepository<Driver, Integer>{
     @Override
     List<Driver> findAll();
 
     @Override
-    void delete(Driver entity);
+    void delete(Driver driver);
 
     @Override
     Driver save(Driver driver);
+
+    @Override
+    Optional<Driver> findById(Integer driverId);
 
     Driver findDriverByDriverUser(User user);
 

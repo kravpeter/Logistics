@@ -61,31 +61,17 @@
 <div class="container">
     <form:form action="/addTrip4" method="post" class="form-inline">
 
-            <label class="mr-sm-2"> Departure city: ${depCity}</label>
-            <label class="mr-sm2">Loading in/out: In</label>
-            <label class="mr-sm-2" for="CargoTypeInput">Type of cargo</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="CargoTypeInput">
-            <label class="mr-sm-2" for="WeightInput">Weight (ton)</label>
-            <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="WeightInput" placeholder="1">
-
-
-            <label class="mr-sm-2" for="CitySelect2">Destination city</label>
-            <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="CitySelect2" name="CitySelect">
+            <label class="mr-sm-2"> Departure city: ${city.cityName}</label>
+            <br>
+            <label class="mr-sm-2" for="CitySelect2"><br>Please, select at least one more city. <br> Choose the next waypoint city or destination city (if there are no waypoints in trip):<br></label>
+            <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="CitySelect2" name="checkpointCity">
                 <option selected>Choose...</option>
-                <c:forEach items="${cities}" var="city">
-                    <option value="${city.cityId}">${city.cityName}</option>
+                <c:forEach items="${cities}" var="c">
+                    <option value="${c.cityId}">${c.cityName}</option>
                 </c:forEach>
             </select>
-            <label class="mr-sm2" for="InOutSelect2">Loading in/out</label>
-            <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="InOutSelect2" name="InOutSelect">
-                <option selected>Choose...</option>
-                <option value="1">In</option>
-                <option value="2">Out</option>
-            </select>
-            <label class="mr-sm-2" for="CargoTypeInput2">Type of cargo</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="CargoTypeInput2">
-            <label class="mr-sm-2" for="WeightInput2">Weight (ton)</label>
-            <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="WeightInput2" placeholder="1">
+        <input type="submit" class="btn btn-outline-secondary" value="Add checkpoint">
+
 
     </form:form>
 

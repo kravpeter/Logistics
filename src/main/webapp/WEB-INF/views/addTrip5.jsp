@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -53,8 +54,33 @@
 
 
 <main role="main">
+        <table>
+            <c:forEach var="city" items="${checkpointCities}" varStatus="status">
+                    <tr>
+                        <td>${city.cityName}</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>${distances[status.index]}</td>
+                    </tr>
+            </c:forEach>
+        </table>
+    <form:form action="/addTrip4" method="post" class="form">
+
+        <label class="mr-sm-2" for="CitySelect2"><br>You can either add one more waypoint in the trip or go to cargoes filling:<br></label>
+        <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="CitySelect2" name="checkpointCity">
+            <option selected>Choose...</option>
+            <c:forEach items="${cities}" var="c">
+                <option value="${c.cityId}">${c.cityName}</option>
+            </c:forEach>
+        </select>
+        <input type="submit" class="btn btn-outline-secondary" onclick="form.action='/addTrip4'; "value="Add checkpoint">
+        <input type="submit" class="btn btn-outline-secondary" onclick="form.action='/addTrip42';" value="Go to cargoes">
 
 
+    </form:form>
 
 
 </main>

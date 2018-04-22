@@ -21,11 +21,9 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
     <a class="navbar-brand" href="#">
-        <img src="<c:url value="/resources/img/truck.svg"/>" width="30" height="30" class="d-inline-block align-top"
-             alt="Click to description">
+        <img src="<c:url value="/resources/img/truck.svg"/>" width="30" height="30" class="d-inline-block align-top" alt="Click to description">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -48,8 +46,7 @@
             <form id="logoutForm" method="post" action="/logout">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
-            <span class="navbar-text"> Manager: ${pageContext.request.userPrincipal.name}  |  </span> <span><a
-                class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()">Logout</a></span>
+            <span class="navbar-text"> Manager: ${pageContext.request.userPrincipal.name}  |  </span> <span><a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()">Logout</a></span>
         </c:if>
     </div>
 </nav>
@@ -57,36 +54,20 @@
 
 <main role="main">
 
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">registration No</th>
-                <th scope="col">capacity</th>
-                <th scope="col">quantity of drivers</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${trucksList}" var="truck">
-                <tr>
-                    <td><a href="/addTrip2?truckRegNumber=${truck.truckRegNumber}">${truck.truckRegNumber}</a></td>
-                    <td>${truck.truckCapacity}</td>
-                    <td>${truck.truckQuantityOfDrivers}</td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+    <table>
+        <c:forEach items="" var="checkpointCity">
 
-    </div>
+        </c:forEach>
+    </table>
+
+
 </main>
 
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script>window.jQuery || document.write('<script src="/resources/js/jquery-slim.min.js"><\/script>')</script>
 <script src="<c:url value="/resources/js/popper.min.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>

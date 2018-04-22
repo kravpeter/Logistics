@@ -66,9 +66,19 @@ public class DriverService {
     }
 
     @Transactional
+    public List<Driver> getDriversByIds(int[] ids){
+        List<Driver> drivers = new ArrayList<>();
+        for (Integer i: ids) {
+            drivers.add(driverRepository.findById(i).get());
+        }
+        return drivers;
+    }
+
+    @Transactional
     public void removeDriver(String driverEmail){
-        Driver driver = driverRepository.findById(driverEmail).get();
+        //driverRepository.findDriverByDriverUser()
+        //Driver driver = driverRepository.findById(driverEmail).get();
         //What's with User???
-        driverRepository.delete(driver);
+        //driverRepository.delete(driver);
     }
 }

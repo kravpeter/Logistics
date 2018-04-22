@@ -6,13 +6,15 @@ import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
 import com.google.maps.model.DirectionsLeg;
 import com.google.maps.model.DirectionsResult;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DistanceDurationService {
 
     private long dist = 0, dur = 0;
 
 
-    public long[] getDistanceDuration(String s1, String s2){
+    public String getDistanceDuration(String s1, String s2){
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyCQff1C2bzv8x4Zq_dk7O78rMl2R1vr7FI")
                 .build();
@@ -23,8 +25,7 @@ public class DistanceDurationService {
             dur += leg.duration.inSeconds;
         }
         dist = dist/1000; dur = dur/3600;
-        long[] elements = {dist, dur};
-        return elements;
+        return "Distance — " + dist + " km.;\nDuration — " + dur +"h.";
     }
 
 }

@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.kravpeter.logistics.entity.City;
-import ru.kravpeter.logistics.entity.Driver;
-import ru.kravpeter.logistics.entity.Truck;
+import ru.kravpeter.logistics.entity.*;
 import ru.kravpeter.logistics.service.*;
 
 import java.util.ArrayList;
@@ -24,6 +22,10 @@ import java.util.Set;
 @Controller
 @RequestMapping("/")
 public class TripController {
+
+    @Autowired
+    AuthenticationFacadeImpl authenticationFacade;
+
     @Autowired
     TripService tripService;
 
@@ -33,10 +35,18 @@ public class TripController {
     @Autowired
     DriverService driverService;
 
+    @Autowired
+    DistanceDurationService distanceDurationService;
+
+    private User manager;
     private City city;
     private Truck truck;
+    private List<City> cityList;
     private List<Driver> driverList;
-
+    private List<Checkpoint> checkpointList;
+    private List<City> checkpointCityList = new ArrayList<>();
+    private List<Cargo> cargoList;
+    private List<String> distanceList = new ArrayList<>();
 
 
     @GetMapping("/trips")
@@ -47,13 +57,15 @@ public class TripController {
 
     @GetMapping("/addTrip1")
     public String addTrip1(Model model){
-        model.addAttribute("citiesList", truckService.getCities());
+        cityList = truckService.getCities();
+        model.addAttribute("citiesList", cityList);
         return "addTrip1";
     }
 
     @PostMapping("/addTrip1")
     public String selectCity(@RequestParam("cityId")int cityId, Model model){
         city = truckService.findCityById(cityId);
+        checkpointCityList.add(city);
         List<Truck> truckList = truckService.getTrucksByCity(city);
         model.addAttribute("trucksList", truckList);
         return truckList.isEmpty() ? "addTripNoTrucks" : "addTrip2";
@@ -78,15 +90,42 @@ public class TripController {
         return "addTrip3";
     }
 
+    @PostMapping("/addTrip3")
+    public String addTrip3(@RequestParam("driver") int[] drivers, Model model){
+        driverList = driverService.getDriversByIds(drivers);
+        return "redirect:/addTrip4";
+    }
 
+    @GetMapping("/addTrip4")
+    public String addTrip4(Model model){
+        model.addAttribute("city", city);
+        model.addAttribute("cities", cityList);
+        return "addTrip4";
+    }
+
+    @PostMapping("/addTrip4")
+    public String addTrip41(@RequestParam("checkpointCity") int cityId, Model model){
+
+        checkpointCityList.add(driverService.findCityById(cityId));
+
+        distanceList.add(distanceDurationService.getDistanceDuration(
+                checkpointCityList.get(checkpointCityList.size() - 2).getCityName(),
+                checkpointCityList.get(checkpointCityList.size() - 1).getCityName()));
+
+        return "redirect:/addTrip5";
+    }
     @GetMapping("/addTrip5")
-    public String addTrip5(@RequestParam("newRoute") int newRoute,
-                           Model model){
-
-
+    public String addTrip5(Model model){
+        model.addAttribute("checkpointCities", checkpointCityList);
+        model.addAttribute("distances", distanceList);
+        model.addAttribute("city", city);
+        model.addAttribute("cities", cityList);
         return "addTrip5";
     }
 
-
+    @PostMapping("/addTrip42")
+    public String addTrip42(Model model){
+        return "addTrip6";
+    }
 
 }
