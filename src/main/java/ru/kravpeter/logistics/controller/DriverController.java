@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ru.kravpeter.logistics.entity.Driver;
 import ru.kravpeter.logistics.service.AuthenticationFacade;
 import ru.kravpeter.logistics.service.DriverService;
+import ru.kravpeter.logistics.service.TruckService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -23,6 +24,9 @@ public class DriverController {
 
     @Autowired
     private DriverService driverService;
+
+    @Autowired
+    private TruckService truckService;
 
     /*@RequestMapping(value = "/username", method = RequestMethod.GET)
     @ResponseBody

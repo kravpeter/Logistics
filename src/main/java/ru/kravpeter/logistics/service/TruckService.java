@@ -34,7 +34,7 @@ public class TruckService {
     public List<City> getCities(){ return cityRepository.findAll();}
 
     @Transactional
-    public List<Truck> getTrucksByCity(City city){ return truckRepository.findTrucksByCity(city);}
+    public List<Truck> getTrucksByCity(City city){ return truckRepository.findTrucksByCityAndTruckStatus(city,"working");}
 
     @Transactional
     public Truck findTrucksByTruckRegNumber(String truckRegNumber){ return truckRepository.findById(truckRegNumber).get();}

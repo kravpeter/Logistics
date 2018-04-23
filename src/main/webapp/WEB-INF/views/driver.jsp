@@ -60,6 +60,20 @@
                        id="email" value="${driver.driverUser.email}">
             </div>
         </div>
+        <div class="form-group row">
+            <label for="truck" class="col-sm-2 col-form-label">Truck:</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext"
+                       id="truck" value="${driver.driverTruck.truckRegNumber}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="partners" class="col-sm-2 col-form-label">Partners:</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext"
+                       id="partners" value="${driver.driverTrip.tripDrivers.get(0)}">
+            </div>
+        </div>
     </form>
 </main>
 

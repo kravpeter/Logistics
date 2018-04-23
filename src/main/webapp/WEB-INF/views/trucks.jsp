@@ -73,10 +73,7 @@
                 <tr>
                     <td>${truck.truckRegNumber}</td>
                     <td>${truck.truckStatus}</td>
-                    <td>
-                        <c:forEach items="${truck.truckDrivers}" var="d">
-                        ${d.driverUser.userName}<br>${d.driverUser.userSurname}
-                        </c:forEach>
+                    <td>${truck.truckDrivers.get(0)}
                     </td>
                     <td>${truck.city.cityName}</td>
                     <td>${truck.truckCapacity}</td>

@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kravpeter.logistics.entity.*;
-import ru.kravpeter.logistics.repository.CargoRepository;
-import ru.kravpeter.logistics.repository.CheckpointRepository;
-import ru.kravpeter.logistics.repository.TripRepository;
+import ru.kravpeter.logistics.repository.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +16,27 @@ public class TripService {
     TripRepository tripRepository;
 
     @Autowired
+    DriverRepository driverRepository;
+
+    @Autowired
+    TruckRepository truckRepository;
+
+    @Autowired
     CheckpointRepository checkpointRepository;
 
     @Autowired
     CargoRepository cargoRepository;
 
     @Transactional
-    public void addTrip(User managerUser, Truck truck, List<Driver> drivers, List<City> checkpoints, List<CargoModel> cargoes){
+    public void addTrip(User managerUser, Truck truck, List<Driver> drivers, List<City> checkpoints, List<CargoModel> cargoes, int duration){
         Trip trip = new Trip();
         trip.setTripManager(managerUser);
         truck.setTruckDrivers(drivers);
+        truck.setTruckStatus("in trip");
         trip.setTripTruck(truck);
-        trip.setTripDrivers(drivers);
+        //trip.setTripDrivers(drivers);
         trip.setTripStatus("in progress");
+        truckRepository.save(truck);
         List<Checkpoint> checkpointList = new ArrayList<>();
         for (City city: checkpoints) {
             Checkpoint checkpoint = new Checkpoint();
@@ -54,7 +60,14 @@ public class TripService {
             checkpointList.add(checkpoint);
         }
         trip.setTripCheckpoints(checkpointList);
-        tripRepository.save(trip);
+        trip = tripRepository.save(trip);
+        for (Driver driver: drivers) {
+            driver.setDriverTruck(truck);
+            driver.setDriverStatus("standby");
+            driver.setDriverHours(duration);
+            driver.setDriverTrip(trip);
+            driverRepository.save(driver);
+        }
     }
 
     @Transactional

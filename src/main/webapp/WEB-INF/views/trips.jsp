@@ -67,7 +67,9 @@
                     <td> ${trip.tripStatus} </td>
                     <td> ${trip.tripTruck.truckRegNumber} </td>
                     <td>
-
+                        <c:forEach items="${trip.tripDrivers}" var="driver">
+                            ${driver.driverUser.userName} <br>
+                        </c:forEach>
                     </td>
                     <td>
                         <table class="table borderless">

@@ -22,4 +22,6 @@ public interface TruckRepository extends JpaRepository<Truck, String> {
     Optional<Truck> findById(String truckRegNumber);
 
     List<Truck> findTrucksByCity(City city);
+
+    List<Truck> findTrucksByCityAndTruckStatus(City city, String status);
 }

@@ -24,5 +24,5 @@ public interface DriverRepository extends JpaRepository<Driver, Integer>{
 
     Driver findDriverByDriverUser(User user);
 
-    List<Driver> findDriversByDriverCity(City city);
+    List<Driver> findDriversByDriverCityAndDriverStatus(City city, String status);
 }

@@ -19,10 +19,7 @@ import java.util.List;
 public class DriverService {
 
     @Autowired
-    UserServiceImpl userServiceImpl;
-
-    @Autowired
-    UserRepository userRepository;
+    UserServiceImpl userService;
 
     @Autowired
     DriverRepository driverRepository;
@@ -46,14 +43,14 @@ public class DriverService {
     public City findCityById(int cityId){ return cityRepository.findByCityId(cityId); }
 
     @Transactional
-    public List<Driver> getDriversByCity(City city){ return driverRepository.findDriversByDriverCity(city); }
+    public List<Driver> getDriversByCity(City city){ return driverRepository.findDriversByDriverCityAndDriverStatus(city, "off-work"); }
 
     @Transactional
     public List<City> getCities(){ return cityRepository.findAll();}
 
     @Transactional
     public Driver addDriver(Driver driver) {
-        User user = userServiceImpl.save(driver.getDriverUser());
+        User user = userService.save(driver.getDriverUser());
         City city = findCityById(driver.getDriverCity().getCityId());
         driver.setDriverUser(user);
         driver.setDriverCity(city);
@@ -63,7 +60,7 @@ public class DriverService {
 
     @Transactional
     public Driver findDriverByEmail(String email){
-        User user = userServiceImpl.findUserByEmail(email);
+        User user = userService.findUserByEmail(email);
         Driver driver = driverRepository.findDriverByDriverUser(user);
         return driver;
     }

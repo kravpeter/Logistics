@@ -78,7 +78,7 @@
                         <td>${driver.driverUser.userName}<br>${driver.driverUser.userSurname}</td>
                         <td>${driver.driverStatus}</td>
                         <td>${driver.driverHours}</td>
-                        <td></td>
+                        <td>${driver.driverTruck.truckRegNumber}</td>
                         <td>${driver.driverUser.userPhoneNumber}</td>
                         <td>${driver.driverUser.email}</td>
                         <td></td>

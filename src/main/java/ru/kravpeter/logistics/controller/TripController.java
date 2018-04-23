@@ -42,11 +42,12 @@ public class TripController {
     private City city;
     private Truck truck;
     private List<City> cityList;
-    private List<Driver> driverList;
+    private List<Driver> driverList = new ArrayList<>();
     private List<City> checkpointCityList = new ArrayList<>();
     private List<String> distanceList = new ArrayList<>();
     private List<CargoModel> checkpointCargoList =
             new ArrayList<>();
+    int totalDur = 0;
 
 
 
@@ -85,7 +86,7 @@ public class TripController {
         String string2 = "Please, choose not more then " + truck.getTruckQuantityOfDrivers() + " drivers.";
         model.addAttribute("quantityDrivers", string);
         model.addAttribute("chooseDrivers", string2);
-        model.addAttribute("checkedDriverList", new DriverList());
+        //model.addAttribute("checkedDriverList", driverList);
         model.addAttribute("driverList", driverList);
         return driverList.isEmpty() ? "addTripNoDrivers" : "addTrip3";
     }
@@ -107,10 +108,11 @@ public class TripController {
     public String addTrip41(@RequestParam("checkpointCity") int cityId, Model model){
 
         checkpointCityList.add(driverService.findCityById(cityId));
-
-        distanceList.add(distanceDurationService.getDistanceDuration(
+        int[] durAndDist= distanceDurationService.getDistanceDuration(
                 checkpointCityList.get(checkpointCityList.size() - 2).getCityName(),
-                checkpointCityList.get(checkpointCityList.size() - 1).getCityName()));
+                checkpointCityList.get(checkpointCityList.size() - 1).getCityName());
+        totalDur += durAndDist[1];
+        distanceList.add("Distance — " + durAndDist[0] + " km.;\nDuration — " + durAndDist[1] +"h.");
 
         return "redirect:/addTrip5";
     }
@@ -158,7 +160,7 @@ public class TripController {
     @GetMapping("/addTrip7")
     public String addTrip7 (Model model){
         manager = userService.findUserByEmail(authenticationFacade.getAuthentication().getName());
-        tripService.addTrip(manager,truck, driverList, checkpointCityList, checkpointCargoList);
+        tripService.addTrip(manager,truck, driverList, checkpointCityList, checkpointCargoList, totalDur/(driverList.size()));
         return "addTrip7";
     }
 

@@ -14,14 +14,13 @@ public class Driver implements Serializable{
     private String driverStatus;
     private Truck driverTruck;
     private City driverCity;
-    private List<Trip> driverTrips;
-    //private List<Trip> driverTrips;
+    private Trip driverTrip;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="driver_id")
     public int getDriverId() { return driverId; }
     public void setDriverId(int driverId) { this.driverId = driverId; }
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="driver_email")
     public User getDriverUser() { return driverUser; }
     public void setDriverUser(User driverUser) { this.driverUser = driverUser; }
@@ -31,7 +30,7 @@ public class Driver implements Serializable{
     @Column(name="driver_status")
     public String getDriverStatus() { return driverStatus; }
     public void setDriverStatus(String driverStatus) { this.driverStatus = driverStatus; }
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="driver_current_truck")
     public Truck getDriverTruck() { return driverTruck; }
     public void setDriverTruck(Truck driverTruck) { this.driverTruck = driverTruck; }
@@ -39,12 +38,10 @@ public class Driver implements Serializable{
     @JoinColumn(name="driver_current_location")
     public City getDriverCity() { return driverCity; }
     public void setDriverCity(City driverCity) { this.driverCity = driverCity; }
-    @ManyToMany
-    @JoinTable(name ="driverlist",
-                joinColumns = @JoinColumn(name="driver_id"),
-                inverseJoinColumns = @JoinColumn(name="trip_id"))
-    public List<Trip> getDriverTrips() { return driverTrips; }
-    public void setDriverTrips(List<Trip> driverTrips) { this.driverTrips = driverTrips; }
+    @ManyToOne
+    @JoinColumn(name="driver_trip")
+    public Trip getDriverTrip() { return driverTrip; }
+    public void setDriverTrip(Trip driverTrip) { this.driverTrip = driverTrip; }
 
     @Override
     public boolean equals(Object o) {
@@ -57,13 +54,13 @@ public class Driver implements Serializable{
                 Objects.equals(driverStatus, driver.driverStatus) &&
                 Objects.equals(driverTruck, driver.driverTruck) &&
                 Objects.equals(driverCity, driver.driverCity) &&
-                Objects.equals(driverTrips, driver.driverTrips);
+                Objects.equals(driverTrip, driver.driverTrip);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(driverId, driverUser, driverHours, driverStatus, driverTruck, driverCity, driverTrips);
+        return Objects.hash(driverId, driverUser, driverHours, driverStatus, driverTruck, driverCity, driverTrip);
     }
 
     @Override

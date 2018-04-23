@@ -14,7 +14,7 @@ public class DistanceDurationService {
     private long dist = 0, dur = 0;
 
 
-    public String getDistanceDuration(String s1, String s2){
+    public int[] getDistanceDuration(String s1, String s2){
         GeoApiContext context = new GeoApiContext.Builder()
                 .apiKey("AIzaSyCQff1C2bzv8x4Zq_dk7O78rMl2R1vr7FI")
                 .build();
@@ -25,7 +25,8 @@ public class DistanceDurationService {
             dur += leg.duration.inSeconds;
         }
         dist = dist/1000; dur = dur/3600;
-        return "Distance — " + dist + " km.;\nDuration — " + dur +"h.";
+        int[] distAndDur = {(int) dist, (int) dur};
+        return distAndDur;
     }
 
 }

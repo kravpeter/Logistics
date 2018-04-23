@@ -53,19 +53,14 @@ public class Trip implements Serializable{
     //public void setTripEndDate(Date tripEndDate) { this.tripEndDate = tripEndDate; }
     @OneToMany( fetch = FetchType.EAGER,
                 mappedBy = "checkpointTrip",
-                cascade = CascadeType.ALL,
-                orphanRemoval = true )
+                cascade = CascadeType.ALL )
     public List<Checkpoint> getTripCheckpoints() { return tripCheckpoints; }
     public void setTripCheckpoints(List<Checkpoint> tripCheckpoints) { this.tripCheckpoints = tripCheckpoints; }
-    @ManyToMany
-            //cascade = {
-            //CascadeType.PERSIST,
-            //CascadeType.MERGE})
-    @JoinTable(name = "driverlist",
-            joinColumns = @JoinColumn(name = "trip_id"),
-            inverseJoinColumns = {@JoinColumn(name = "driver_id")})
-            public List<Driver> getTripDrivers(){return this.tripDrivers;}
-            public void setTripDrivers(List<Driver> tripDrivers) { this.tripDrivers = tripDrivers; }
+    @OneToMany(//fetch = FetchType.EAGER,
+                mappedBy = "driverTrip",
+                cascade = CascadeType.ALL)
+    public List<Driver> getTripDrivers(){return this.tripDrivers;}
+    public void setTripDrivers(List<Driver> tripDrivers) { this.tripDrivers = tripDrivers; }
 
     @Override
     public boolean equals(Object o) {
