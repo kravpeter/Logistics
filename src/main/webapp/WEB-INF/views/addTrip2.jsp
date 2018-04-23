@@ -55,8 +55,8 @@
 </nav>
 
 
-<main role="main">
-
+<div class="container">
+    <h1>Choose vehicle</h1>
     <div class="container">
         <table class="table table-striped">
             <thead>
@@ -78,7 +78,7 @@
         </table>
 
     </div>
-</main>
+</div>
 
 
 <!-- Bootstrap core JavaScript

@@ -3,6 +3,7 @@ package ru.kravpeter.logistics.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name="users")
@@ -62,5 +63,26 @@ public class User implements Serializable{
     }
     public void setUserPhoneNumber(String userPhoneNumber) {
         this.userPhoneNumber = userPhoneNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userRole == user.userRole &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(userPassword, user.userPassword) &&
+                Objects.equals(confirmPassword, user.confirmPassword) &&
+                Objects.equals(userName, user.userName) &&
+                Objects.equals(userSurname, user.userSurname) &&
+                Objects.equals(userRegDate, user.userRegDate) &&
+                Objects.equals(userPhoneNumber, user.userPhoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(email, userPassword, confirmPassword, userName, userSurname, userRegDate, userRole, userPhoneNumber);
     }
 }

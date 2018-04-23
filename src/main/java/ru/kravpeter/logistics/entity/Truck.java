@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="trucks")
@@ -14,9 +16,10 @@ public class Truck implements Serializable{
     private String truckRegNumber;
     private short truckCapacity;
     private short truckQuantityOfDrivers;
-    private boolean truckInOrder;
+    private String truckStatus;
     private Timestamp truckRegDate;
     private City city;
+    private List<Driver> truckDrivers;
 
     @Id
     @Column(name = "truck_reg_number")
@@ -39,9 +42,9 @@ public class Truck implements Serializable{
 
     @Column(name = "truck_in_order")
 
-    public boolean isTruckInOrder() { return truckInOrder; }
+    public String getTruckStatus() { return truckStatus; }
 
-    public void setTruckInOrder(boolean truckInOrder) { this.truckInOrder = truckInOrder; }
+    public void setTruckStatus(String truckStatus) { this.truckStatus = truckStatus; }
 
     @Column(name = "truck_reg_date")
     @Temporal(TemporalType.DATE)
@@ -57,4 +60,30 @@ public class Truck implements Serializable{
 
     public void setCity(City city) { this.city = city; }
 
+    @OneToMany(
+            mappedBy = "driverTruck",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    public List<Driver> getTruckDrivers() { return truckDrivers; }
+    public void setTruckDrivers(List<Driver> truckDrivers) { this.truckDrivers = truckDrivers; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Truck truck = (Truck) o;
+        return truckCapacity == truck.truckCapacity &&
+                truckQuantityOfDrivers == truck.truckQuantityOfDrivers &&
+                Objects.equals(truckRegNumber, truck.truckRegNumber) &&
+                Objects.equals(truckStatus, truck.truckStatus) &&
+                Objects.equals(truckRegDate, truck.truckRegDate) &&
+                Objects.equals(city, truck.city) &&
+                Objects.equals(truckDrivers, truck.truckDrivers);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(truckRegNumber, truckCapacity, truckQuantityOfDrivers, truckStatus, truckRegDate, city, truckDrivers);
+    }
 }

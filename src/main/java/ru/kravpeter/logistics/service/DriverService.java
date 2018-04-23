@@ -22,6 +22,9 @@ public class DriverService {
     UserServiceImpl userServiceImpl;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     DriverRepository driverRepository;
 
     @Autowired
@@ -75,10 +78,32 @@ public class DriverService {
     }
 
     @Transactional
-    public void removeDriver(String driverEmail){
+    public void removeDriver(int driverId){
+        Driver driver = driverRepository.findById(driverId).get();
+        driverRepository.delete(driver);
+        //userRepository.delete(driver.getDriverUser());
+
         //driverRepository.findDriverByDriverUser()
         //Driver driver = driverRepository.findById(driverEmail).get();
         //What's with User???
         //driverRepository.delete(driver);
+    }
+
+    @Transactional
+    public void editDriver(int driverId,
+                           String driverName,
+                           String driverSurname,
+                           String driverPhoneNumber,
+                           int driverHours,
+                           String driverStatus,
+                           int driverCityId){
+        Driver driver = driverRepository.findById(driverId).get();
+        if (!driver.getDriverUser().getUserName().equals(driverName)) driver.getDriverUser().setUserName(driverName);
+        if (!driver.getDriverUser().getUserSurname().equals(driverSurname)) driver.getDriverUser().setUserSurname(driverSurname);
+        if (!driver.getDriverUser().getUserPhoneNumber().equals(driverPhoneNumber)) driver.getDriverUser().setUserPhoneNumber(driverPhoneNumber);
+        if(driver.getDriverHours()!=driverHours) driver.setDriverHours(driverHours);
+        if(!driver.getDriverStatus().equals(driverStatus)) driver.setDriverStatus(driverStatus);
+        City editedCity = cityRepository.findByCityId(driverCityId);
+        if(!driver.getDriverCity().equals(editedCity)) driver.setDriverCity(editedCity);
     }
 }

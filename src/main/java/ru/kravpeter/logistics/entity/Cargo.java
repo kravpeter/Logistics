@@ -2,6 +2,7 @@ package ru.kravpeter.logistics.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name="cargoes")
@@ -29,4 +30,22 @@ public class Cargo implements Serializable {
     @Column(name = "cargo_status")
     public String getCargoStatus() { return cargoStatus; }
     public void setCargoStatus(String cargoStatus) { this.cargoStatus = cargoStatus; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cargo cargo = (Cargo) o;
+        return cargoId == cargo.cargoId &&
+                cargoWeight == cargo.cargoWeight &&
+                Objects.equals(cargoCheckpoint, cargo.cargoCheckpoint) &&
+                Objects.equals(cargoType, cargo.cargoType) &&
+                Objects.equals(cargoStatus, cargo.cargoStatus);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(cargoId, cargoCheckpoint, cargoType, cargoWeight, cargoStatus);
+    }
 }

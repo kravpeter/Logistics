@@ -53,7 +53,8 @@
 </nav>
 
 
-<main role="main">
+<div class="container">
+    <h1>Add checkpoints</h1>
         <table>
             <c:forEach var="city" items="${checkpointCities}" varStatus="status">
                     <tr>
@@ -77,13 +78,13 @@
             </c:forEach>
         </select>
         <input type="submit" class="btn btn-outline-secondary" onclick="form.action='/addTrip4'; "value="Add checkpoint">
-        <input type="submit" class="btn btn-outline-secondary" onclick="form.action='/addTrip42';" value="Go to cargoes">
+        <a href="/addTrip6" class="btn btn-outline-secondary">Go to cargoes</a>
 
 
     </form:form>
 
 
-</main>
+</div>
 
 
 <!-- Bootstrap core JavaScript

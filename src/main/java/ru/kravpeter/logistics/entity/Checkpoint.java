@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="checkpoints")
@@ -45,4 +46,23 @@ public class Checkpoint implements Serializable{
     @Column(name="checkpoint_act_date")
     public Date getCheckpointActDate() { return checkpointActDate; }
     public void setCheckpointActDate(Date checkpointActDate) { this.checkpointActDate = checkpointActDate; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Checkpoint that = (Checkpoint) o;
+        return checkpointId == that.checkpointId &&
+                Objects.equals(checkpointTrip, that.checkpointTrip) &&
+                Objects.equals(checkpointCargoes, that.checkpointCargoes) &&
+                Objects.equals(checkpointArrCity, that.checkpointArrCity) &&
+                Objects.equals(checkpointStatus, that.checkpointStatus) &&
+                Objects.equals(checkpointActDate, that.checkpointActDate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(checkpointId, checkpointTrip, checkpointCargoes, checkpointArrCity, checkpointStatus, checkpointActDate);
+    }
 }

@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jumbotron.css"/>">
 </head>
 
-
+<body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
     <a class="navbar-brand" href="#">
         <img src="<c:url value="/resources/img/truck.svg"/>" width="30" height="30" class="d-inline-block align-top" alt="Click to description">
@@ -54,24 +54,9 @@
 
 
 <div class="container">
-    <h1>Choose city</h1>
+    <h1>Confirm</h1>
 
-    <form:form action="/addTrip1" method="post">
-
-
-                <label for="city-sel" class="col-5 col-form-label">Select a city of departure:</label>
-                <div class="col-5">
-                    <select id="city-sel" class="custom-select" id="reg-number-select" name="cityId">
-                        <c:forEach items="${citiesList}" var="city">
-                            <option value="${city.cityId}">${city.cityName}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <button class="btn btn-outline-secondary" type="submit" value="addTrip1">Next</button>
-
-    </form:form>
 </div>
-
 
 
 <!-- Bootstrap core JavaScript

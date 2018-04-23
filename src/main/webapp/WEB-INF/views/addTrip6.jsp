@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -52,16 +53,45 @@
 </nav>
 
 
-<main role="main">
-
+<div class="container">
+    <h1>Add cargoes</h1>
+<h4>${waypoints}</h4>
+<h4>Truck capacity: ${truck.truckCapacity} ton</h4>
     <table>
-        <c:forEach items="" var="checkpointCity">
-
+        <c:forEach items="${cargoes}" var="cargo">
+            <tr>
+                <td>${cargo.city.cityName}</td>
+                <td>${cargo.cargoType}</td>
+                <td>${cargo.cargoWeight}</td>
+                <td>${cargo.cargoStatus}</td>
+            </tr>
         </c:forEach>
     </table>
+    <form:form action="/addTrip6" method="post" class="form-inline">
+        <label class="mr-sm-2" for="CitySelect1"> City of loading:</label>
+        <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="CitySelect1" name="checkpointIn">
+            <option selected>Choose...</option>
+            <c:forEach items="${checkpoints}" var="c">
+                <option value="${c.cityId}">${c.cityName}</option>
+            </c:forEach>
+        </select>
+        <label class="mr-sm-2" for="CitySelect2">Loading out:</label>
+        <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="CitySelect2" name="checkpointOut">
+            <option selected>Choose...</option>
+            <c:forEach items="${checkpoints}" var="c">
+                <option value="${c.cityId}">${c.cityName}</option>
+            </c:forEach>
+        </select>
+        <label for="cargoType" class="mr-sm-2">Type of cargo:</label>
+        <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="text" value="20" id="cargoType" name="cargoType">
+        <label for="weightInput" class="mr-sm-2">Weight:</label>
+        <input class="form-control mb-2 mr-sm-2 mb-sm-0" type="number" value="20" id="weightInput" name="weight">
 
+        <div><input type="submit" class="btn btn-outline-secondary" value="Add cargo"></div>
 
-</main>
+    </form:form>
+    <a href="/addTrip7" class="btn btn-outline-secondary">Confirm trip</a>
+</div>
 
 
 <!-- Bootstrap core JavaScript

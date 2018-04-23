@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/bootstrap.min.css"/>">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/jumbotron.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/custom.css"/>">
 </head>
 
 <body>
@@ -59,22 +59,24 @@
         <h1>Trips</h1>
         <a class="btn btn-outline-secondary" href="/addTrip1">Add</a>
     </div>
-    <div>
-        <table width="100%">
-            <c:forEach items="${trips}" var="trip">
+        <table class="table">
+            <c:forEach items="${trips}" var="trip" varStatus="status">
                 <tr>
                     <td> ${trip.tripId} </td>
                     <td> ${trip.tripManager.userName}<br>${trip.tripManager.userSurname} </td>
                     <td> ${trip.tripStatus} </td>
                     <td> ${trip.tripTruck.truckRegNumber} </td>
                     <td>
-                        <table>
+
+                    </td>
+                    <td>
+                        <table class="table borderless">
                             <c:forEach items="${trip.tripCheckpoints}" var="checkpoint">
                                         <tr>
                                             <td> ${checkpoint.checkpointArrCity.cityName} </td>
                                             <td> ${checkpoint.checkpointStatus} </td>
                                             <td>
-                                                <table>
+                                                <table class="table borderless">
                                                     <c:forEach items="${checkpoint.checkpointCargoes}" var="cargo">
                                                         <tr>
                                                             <td> ${cargo.cargoType} </td>
@@ -91,7 +93,6 @@
                 </tr>
             </c:forEach>
         </table>
-    </div>
 </main>
 
 

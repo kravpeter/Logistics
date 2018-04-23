@@ -52,7 +52,8 @@
     </div>
 </nav>
 
-<main role="main">
+<div class="container">
+    <h1>Add drivers</h1>
     <div class="container">
         <h5>${quantityDrivers}</h5>
         <h5>${chooseDrivers}</h5>
@@ -75,8 +76,7 @@
         </form:form>
 
     </div>
-
-</main>
+</div>
 
 
 <!-- Bootstrap core JavaScript

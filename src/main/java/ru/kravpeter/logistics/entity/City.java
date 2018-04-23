@@ -2,6 +2,7 @@ package ru.kravpeter.logistics.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name="cities")
@@ -25,6 +26,20 @@ public class City implements Serializable{
     public String getCityName() { return cityName; }
     public void setCityName(String cityName) { this.cityName = cityName; }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return cityId == city.cityId &&
+                Objects.equals(cityName, city.cityName);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(cityId, cityName);
+    }
     //public String toString(){
     //    return cityName;
     //}

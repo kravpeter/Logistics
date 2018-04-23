@@ -12,4 +12,7 @@ public interface CheckpointRepository extends JpaRepository<Checkpoint, Long> {
 
     @Override
     Optional<Checkpoint> findById(Long checkpointId);
+
+    @Override
+    Checkpoint save(Checkpoint checkpoint);
 }

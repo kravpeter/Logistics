@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.kravpeter.logistics.entity.City;
 import ru.kravpeter.logistics.entity.Truck;
 import ru.kravpeter.logistics.repository.CityRepository;
+import ru.kravpeter.logistics.repository.DriverRepository;
 import ru.kravpeter.logistics.repository.TruckRepository;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,9 @@ public class TruckService {
 
     @Autowired
     TruckRepository truckRepository;
+
+    @Autowired
+    DriverRepository driverRepository;
 
     @Autowired
     CityRepository cityRepository;
@@ -36,12 +40,12 @@ public class TruckService {
     public Truck findTrucksByTruckRegNumber(String truckRegNumber){ return truckRepository.findById(truckRegNumber).get();}
 
     @Transactional
-    public Truck addTruck(String truckRegNumber, short truckCapacity, short truckQuantityOfDrivers, boolean truckCondition, City city) {
+    public Truck addTruck(String truckRegNumber, short truckCapacity, short truckQuantityOfDrivers, String truckCondition, City city) {
         Truck truck = new Truck();
         truck.setTruckRegNumber(truckRegNumber);
         truck.setTruckCapacity(truckCapacity);
         truck.setTruckQuantityOfDrivers(truckQuantityOfDrivers);
-        truck.setTruckInOrder(truckCondition);
+        truck.setTruckStatus(truckCondition);
         truck.setCity(city);
         truckRepository.saveAndFlush(truck);
         return truck;

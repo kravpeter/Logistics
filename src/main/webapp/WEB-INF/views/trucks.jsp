@@ -72,8 +72,12 @@
             <c:forEach items="${truckAndCitiesList}" var="truck">
                 <tr>
                     <td>${truck.truckRegNumber}</td>
-                    <td></td>
-                    <td></td>
+                    <td>${truck.truckStatus}</td>
+                    <td>
+                        <c:forEach items="${truck.truckDrivers}" var="d">
+                        ${d.driverUser.userName}<br>${d.driverUser.userSurname}
+                        </c:forEach>
+                    </td>
                     <td>${truck.city.cityName}</td>
                     <td>${truck.truckCapacity}</td>
                     <td>${truck.truckQuantityOfDrivers}</td>
@@ -116,8 +120,8 @@
                             <label for="conditionSelect" class="col-5 col-form-label">Vehicle condition:</label>
                             <div class="col-5">
                                 <select id="conditionSelect" class="custom-select" name="condition-select">
-                                    <option value="1">working</option>
-                                    <option value="0">in service</option>
+                                    <option value="working">working</option>
+                                    <option value="in service">in service</option>
                                 </select>
                             </div>
                         </div>
@@ -178,8 +182,8 @@
                             <label for="condition-select" class="col-5 col-form-label">Vehicle condition:</label>
                             <div class="col-5">
                                 <select class="custom-select" id="condition-select" name="condition-select">
-                                    <option value="1">working</option>
-                                    <option value="0">in service</option>
+                                    <option value="working">working</option>
+                                    <option value="in service">in service</option>
                                 </select>
                             </div>
                         </div>

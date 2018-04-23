@@ -55,8 +55,8 @@
         <h1>Drivers</h1>
 
         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalAddDriver">Add</button>
-        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter">Edit</button>
-        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModalCenter">Delete</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalEditDriver">Edit</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#ModalDriverDelete">Delete</button>
     </div>
     <div>
         <table class="table table-striped">
@@ -88,7 +88,7 @@
             </tbody>
         </table>
     </div>
-    <!-- Modal -->
+    <!-- Modal Add-->
     <div class="modal fade" id="ModalAddDriver" tabindex="-1" role="dialog" aria-labelledby="ModalAddDriverTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -164,7 +164,7 @@
                         </spring:bind>
                     </div>
                     <spring:bind path="driverHours"><form:input type="hidden" path="driverHours" value="0"/></spring:bind>
-                    <spring:bind path="driverStatus"><form:input type="hidden" path="driverStatus" value="0"/></spring:bind>
+                    <spring:bind path="driverStatus"><form:input type="hidden" path="driverStatus" value="off-work"/></spring:bind>
                     <div class="form-group row">
                         <spring:bind path="driverCity">
                             <label for="citySelect" class="col-5 col-form-label">Current location:</label>
@@ -181,6 +181,117 @@
                     <button class="col-5 btn btn-lg btn-primary btn-block" type="submit">Add driver</button>
                 </form:form>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Edit-->
+    <div class="modal fade" id="ModalEditDriver" tabindex="-1" role="dialog" aria-labelledby="ModalEditDriverTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalEditDriverTitle">Edit a Driver</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+                <form:form action="drivers/edit" method="POST">
+                <div class="modal-body">
+                    <div class="form-group row">
+                            <label for="driverEmailSelect" class="col-5 col-form-label">Driver:</label>
+                            <div class="col-5 form-group row">
+                                <select id = "driverEmailSelect" name="driverId">
+                                    <c:forEach items="${driversList}" var="driver" varStatus="status">
+                                        <option value="${driver.driverId}">${driver.driverUser.email}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                    </div>
+
+                    <div class="form-group row">
+                            <label for="driverName" class="col-5 col-form-label">Name:</label>
+                            <div class="col-5 form-group row">
+                                <input type="text" id="driverName" name="driverName" class="form-control" />
+                            </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="driverSurname" class="col-5 col-form-label">Surname:</label>
+                        <div class="col-5 form-group row">
+                            <input type="text" id="driverSurname" name="driverSurname" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="driverPhoneNumber" class="col-5 col-form-label">Phone number:</label>
+                        <div class="col-5 form-group row">
+                            <input type="text" id="driverPhoneNumber" name="driverPhoneNumber" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="driverHours" class="col-5 col-form-label">Hours:</label>
+                        <div class="col-5 form-group row">
+                            <input type="number" id="driverHours" name="driverHours" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="driverStatus" class="col-5 col-form-label">Status:</label>
+                        <div class="col-5 form-group row">
+                            <select id = "driverStatus" name="driverStatus">
+                                <option value="off-work">off-work</option>
+                                <option value="standby">standby</option>
+                                <option value="driving">driving</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                            <label for="driverCity" class="col-5 col-form-label">Current location:</label>
+                            <div class="col-5 form-group row">
+                                <select id = "driverCity" name="driverCity">
+                                    <c:forEach items="${citiesList}" var="city">
+                                        <option value="${city.cityId}">${city.cityName}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                    </div>
+                    <button class="col-5 btn btn-lg btn-primary btn-block" type="submit">Edit driver</button>
+                    </form:form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Delete -->
+    <div class="modal fade" id="ModalDriverDelete" tabindex="-1" role="dialog" aria-labelledby="ModalDriverDeleteTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalDriverDeleteTitle">Delete a Driver</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form:form action="drivers/delete" method="post">
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="driverSelect" class="col-5 col-form-label">Driver's email/id:</label>
+                            <div class="col-5">
+                                <select id="driverSelect" class="custom-select" id="reg-number-select" name="driverDelete">
+                                    <c:forEach items="${driversList}" var="driver">
+                                        <option value="${driver.driverId}">${driver.driverUser.email}/${driver.driverId}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" value="delete">Delete driver</button>
+                    </div>
+                </form:form>
             </div>
         </div>
     </div>

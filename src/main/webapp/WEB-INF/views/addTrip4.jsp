@@ -59,6 +59,7 @@
 
 
 <div class="container">
+    <h1>Add checkpoints</h1>
     <form:form action="/addTrip4" method="post" class="form-inline">
 
             <label class="mr-sm-2"> Departure city: ${city.cityName}</label>

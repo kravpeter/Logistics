@@ -12,5 +12,8 @@ public interface CargoRepository extends JpaRepository<Cargo, Long> {
     List<Cargo> findAll();
 
     @Override
+    Cargo save(Cargo cargo);
+
+    @Override
     Optional<Cargo> findById(Long aLong);
 }

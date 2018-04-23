@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kravpeter.logistics.entity.City;
+import ru.kravpeter.logistics.service.DriverService;
 import ru.kravpeter.logistics.service.TruckService;
 
 @Controller
@@ -13,6 +14,9 @@ public class TruckController {
 
     @Autowired
     TruckService truckService;
+
+    @Autowired
+    DriverService driverService;
 
     @RequestMapping(value = "/trucks", method = RequestMethod.GET)
     public String showTrucks(Model model){
@@ -25,7 +29,7 @@ public class TruckController {
     public String addTruck(@RequestParam("reg-number-input") String truckRegNumber,
                            @RequestParam("capacity-input") short truckCapacity,
                            @RequestParam("quantity-of-drivers-input") short truckQuantityOfDrivers,
-                           @RequestParam("condition-select") boolean truckCondition,
+                           @RequestParam("condition-select") String truckCondition,
                            @RequestParam("city-select") int cityId,
                            Model model){
        City city = truckService.findCityById(cityId);

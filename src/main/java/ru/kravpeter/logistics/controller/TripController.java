@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import ru.kravpeter.logistics.entity.*;
 import ru.kravpeter.logistics.service.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
 public class TripController {
+
+    @Autowired
+    UserServiceImpl userService;
 
     @Autowired
     AuthenticationFacadeImpl authenticationFacade;
@@ -43,10 +43,11 @@ public class TripController {
     private Truck truck;
     private List<City> cityList;
     private List<Driver> driverList;
-    private List<Checkpoint> checkpointList;
     private List<City> checkpointCityList = new ArrayList<>();
-    private List<Cargo> cargoList;
     private List<String> distanceList = new ArrayList<>();
+    private List<CargoModel> checkpointCargoList =
+            new ArrayList<>();
+
 
 
     @GetMapping("/trips")
@@ -86,8 +87,7 @@ public class TripController {
         model.addAttribute("chooseDrivers", string2);
         model.addAttribute("checkedDriverList", new DriverList());
         model.addAttribute("driverList", driverList);
-        //driverList.isEmpty() ? "addTripNoDrivers" :
-        return "addTrip3";
+        return driverList.isEmpty() ? "addTripNoDrivers" : "addTrip3";
     }
 
     @PostMapping("/addTrip3")
@@ -125,7 +125,41 @@ public class TripController {
 
     @PostMapping("/addTrip42")
     public String addTrip42(Model model){
+
         return "addTrip6";
+    }
+
+    @GetMapping("/addTrip6")
+    public String addTrip6 (Model model){
+        String s = "Chosen waypoints: ";
+        for (int i = 0; i < checkpointCityList.size() - 1; i++) {
+            s += checkpointCityList.get(i).getCityName() + " -> ";
+        }
+        s += checkpointCityList.get(checkpointCityList.size()-1).getCityName();
+        model.addAttribute("truck", truck);
+        model.addAttribute("checkpoints", checkpointCityList);
+        model.addAttribute("cargoes",checkpointCargoList);
+        model.addAttribute("waypoints", s);
+        return "addTrip6";
+    }
+    @PostMapping("/addTrip6")
+    public String addCargoes (@RequestParam("checkpointIn") int cityIdIn,
+                              @RequestParam("checkpointOut") int cityIdOut,
+                              @RequestParam("cargoType") String cargoType,
+                              @RequestParam("weight") short weight,
+                              Model model){
+        //quntityOfCheckpoints = checkpointCityList.size();
+        checkpointCargoList.add(new CargoModel(driverService.findCityById(cityIdIn),
+                cargoType, weight, "in"));
+        checkpointCargoList.add(new CargoModel(driverService.findCityById(cityIdOut),
+                cargoType, weight, "out"));
+        return "redirect:/addTrip6";
+    }
+    @GetMapping("/addTrip7")
+    public String addTrip7 (Model model){
+        manager = userService.findUserByEmail(authenticationFacade.getAuthentication().getName());
+        tripService.addTrip(manager,truck, driverList, checkpointCityList, checkpointCargoList);
+        return "addTrip7";
     }
 
 }

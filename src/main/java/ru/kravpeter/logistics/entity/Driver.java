@@ -3,6 +3,7 @@ package ru.kravpeter.logistics.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name="drivers")
@@ -10,16 +11,17 @@ public class Driver implements Serializable{
     private int driverId;
     private User driverUser;
     private int driverHours;
-    private int driverStatus;
+    private String driverStatus;
     private Truck driverTruck;
     private City driverCity;
+    private List<Trip> driverTrips;
     //private List<Trip> driverTrips;
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="driver_id")
     public int getDriverId() { return driverId; }
     public void setDriverId(int driverId) { this.driverId = driverId; }
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="driver_email")
     public User getDriverUser() { return driverUser; }
     public void setDriverUser(User driverUser) { this.driverUser = driverUser; }
@@ -27,26 +29,43 @@ public class Driver implements Serializable{
     public int getDriverHours() { return driverHours; }
     public void setDriverHours(int driverHours) { this.driverHours = driverHours; }
     @Column(name="driver_status")
-    public int getDriverStatus() { return driverStatus; }
-    public void setDriverStatus(int driverStatus) { this.driverStatus = driverStatus; }
+    public String getDriverStatus() { return driverStatus; }
+    public void setDriverStatus(String driverStatus) { this.driverStatus = driverStatus; }
     @ManyToOne
-    @JoinColumn(name="driver_current_truck", nullable = true)
+    @JoinColumn(name="driver_current_truck")
     public Truck getDriverTruck() { return driverTruck; }
     public void setDriverTruck(Truck driverTruck) { this.driverTruck = driverTruck; }
     @ManyToOne
     @JoinColumn(name="driver_current_location")
     public City getDriverCity() { return driverCity; }
     public void setDriverCity(City driverCity) { this.driverCity = driverCity; }
-    /*@ManyToMany
+    @ManyToMany
     @JoinTable(name ="driverlist",
                 joinColumns = @JoinColumn(name="driver_id"),
                 inverseJoinColumns = @JoinColumn(name="trip_id"))
-    */
-
-    private List<Trip> driverTrips;
-    @ManyToMany( mappedBy = "tripDrivers" )
     public List<Trip> getDriverTrips() { return driverTrips; }
     public void setDriverTrips(List<Trip> driverTrips) { this.driverTrips = driverTrips; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return driverId == driver.driverId &&
+                driverHours == driver.driverHours &&
+                Objects.equals(driverUser, driver.driverUser) &&
+                Objects.equals(driverStatus, driver.driverStatus) &&
+                Objects.equals(driverTruck, driver.driverTruck) &&
+                Objects.equals(driverCity, driver.driverCity) &&
+                Objects.equals(driverTrips, driver.driverTrips);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(driverId, driverUser, driverHours, driverStatus, driverTruck, driverCity, driverTrips);
+    }
+
     @Override
     public String toString() {
         return driverUser.getUserName() + " " +
