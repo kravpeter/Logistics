@@ -57,8 +57,7 @@ public class Trip implements Serializable{
     public List<Checkpoint> getTripCheckpoints() { return tripCheckpoints; }
     public void setTripCheckpoints(List<Checkpoint> tripCheckpoints) { this.tripCheckpoints = tripCheckpoints; }
     @OneToMany(//fetch = FetchType.EAGER,
-                mappedBy = "driverTrip",
-                cascade = CascadeType.ALL)
+                mappedBy = "driverTrip")
     public List<Driver> getTripDrivers(){return this.tripDrivers;}
     public void setTripDrivers(List<Driver> tripDrivers) { this.tripDrivers = tripDrivers; }
 

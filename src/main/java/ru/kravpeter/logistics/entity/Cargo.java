@@ -17,7 +17,7 @@ public class Cargo implements Serializable {
     @Column(name = "cargo_id")
     public long getCargoId() { return cargoId; }
     public void setCargoId(long cargoId) { this.cargoId = cargoId; }
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="checkpoint_id")
     public Checkpoint getCargoCheckpoint() { return cargoCheckpoint; }
     public void setCargoCheckpoint(Checkpoint cargoCheckpoint) { this.cargoCheckpoint = cargoCheckpoint; }

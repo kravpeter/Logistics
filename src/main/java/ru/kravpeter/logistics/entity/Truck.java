@@ -60,9 +60,7 @@ public class Truck implements Serializable{
 
     public void setCity(City city) { this.city = city; }
 
-    @OneToMany(//fetch = FetchType.EAGER,
-            mappedBy = "driverTruck",
-            cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "driverTruck")
     public List<Driver> getTruckDrivers() { return truckDrivers; }
     public void setTruckDrivers(List<Driver> truckDrivers) { this.truckDrivers = truckDrivers; }
 

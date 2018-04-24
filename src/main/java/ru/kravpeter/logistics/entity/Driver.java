@@ -20,7 +20,7 @@ public class Driver implements Serializable{
     @Column(name="driver_id")
     public int getDriverId() { return driverId; }
     public void setDriverId(int driverId) { this.driverId = driverId; }
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="driver_email")
     public User getDriverUser() { return driverUser; }
     public void setDriverUser(User driverUser) { this.driverUser = driverUser; }

@@ -40,6 +40,9 @@ public class DriverService {
     }
 
     @Transactional
+    public void changeDriver(Driver driver){ driverRepository.save(driver); }
+
+    @Transactional
     public City findCityById(int cityId){ return cityRepository.findByCityId(cityId); }
 
     @Transactional

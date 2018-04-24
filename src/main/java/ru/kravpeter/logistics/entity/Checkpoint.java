@@ -21,14 +21,14 @@ public class Checkpoint implements Serializable{
     @Column(name = "checkpoint_id")
     public long getCheckpointId() { return checkpointId; }
     public void setCheckpointId(long checkpointId) { this.checkpointId = checkpointId; }
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="trip_id")
     public Trip getCheckpointTrip() { return checkpointTrip; }
     public void setCheckpointTrip(Trip checkpointTrip) { this.checkpointTrip = checkpointTrip; }
     @OneToMany(fetch = FetchType.EAGER,
-            mappedBy = "cargoCheckpoint",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            mappedBy = "cargoCheckpoint")
+            //cascade = CascadeType.ALL,
+            //orphanRemoval = true)
     public List<Cargo> getCheckpointCargoes() { return checkpointCargoes; }
     public void setCheckpointCargoes(List<Cargo> checkpointCargoes) { this.checkpointCargoes = checkpointCargoes; }
     //@ManyToOne

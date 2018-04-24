@@ -1096,187 +1096,196 @@
     <index id="267" parent="234" name="FKrpmvtuvex0nl2ixwr32uh1d56">
       <ColNames>driver_current_location</ColNames>
     </index>
-    <index id="268" parent="234" name="FKe2uej0tb7hprkigw5njsb3hwu">
+    <index id="268" parent="234" name="FKd1llcp8b3iio0neowh020msr0">
+      <ColNames>driver_email</ColNames>
+    </index>
+    <index id="269" parent="234" name="FKe2uej0tb7hprkigw5njsb3hwu">
       <ColNames>driver_trip</ColNames>
     </index>
-    <key id="269" parent="234" name="PRIMARY">
+    <key id="270" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>driver_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="270" parent="234" name="drivers_trucks_truck_reg_number_fk">
+    <foreign-key id="271" parent="234" name="drivers_trucks_truck_reg_number_fk">
       <ColNames>driver_current_truck</ColNames>
       <RefSchemaName>logistic_system</RefSchemaName>
       <RefTableName>trucks</RefTableName>
       <RefColNames>truck_reg_number</RefColNames>
     </foreign-key>
-    <foreign-key id="271" parent="234" name="FKrpmvtuvex0nl2ixwr32uh1d56">
+    <foreign-key id="272" parent="234" name="FKrpmvtuvex0nl2ixwr32uh1d56">
       <ColNames>driver_current_location</ColNames>
       <RefSchemaName>logistic_system</RefSchemaName>
       <RefTableName>cities</RefTableName>
       <RefColNames>city_id</RefColNames>
     </foreign-key>
-    <foreign-key id="272" parent="234" name="FKe2uej0tb7hprkigw5njsb3hwu">
+    <foreign-key id="273" parent="234" name="FKd1llcp8b3iio0neowh020msr0">
+      <ColNames>driver_email</ColNames>
+      <RefSchemaName>logistic_system</RefSchemaName>
+      <RefTableName>users</RefTableName>
+      <RefColNames>user_email</RefColNames>
+    </foreign-key>
+    <foreign-key id="274" parent="234" name="FKe2uej0tb7hprkigw5njsb3hwu">
       <ColNames>driver_trip</ColNames>
       <RefSchemaName>logistic_system</RefSchemaName>
       <RefTableName>trips</RefTableName>
       <RefColNames>trip_id</RefColNames>
     </foreign-key>
-    <column id="273" parent="235" name="trip_id">
+    <column id="275" parent="235" name="trip_id">
       <Position>1</Position>
       <DataType>bigint(20)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="235" name="trip_status">
+    <column id="276" parent="235" name="trip_status">
       <Position>2</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="275" parent="235" name="truck_reg_number">
+    <column id="277" parent="235" name="truck_reg_number">
       <Position>3</Position>
       <DataType>char(7)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="276" parent="235" name="trip_start_date">
+    <column id="278" parent="235" name="trip_start_date">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="277" parent="235" name="trip_manager">
+    <column id="279" parent="235" name="trip_manager">
       <Position>5</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="278" parent="235" name="truck_reg_number">
+    <index id="280" parent="235" name="truck_reg_number">
       <ColNames>truck_reg_number</ColNames>
     </index>
-    <index id="279" parent="235" name="trips_users_user_email_fk_2">
+    <index id="281" parent="235" name="trips_users_user_email_fk_2">
       <ColNames>trip_manager</ColNames>
     </index>
-    <key id="280" parent="235" name="PRIMARY">
+    <key id="282" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>trip_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="281" parent="235" name="trips_ibfk_2">
+    <foreign-key id="283" parent="235" name="trips_ibfk_2">
       <ColNames>truck_reg_number</ColNames>
       <RefSchemaName>logistic_system</RefSchemaName>
       <RefTableName>trucks</RefTableName>
       <RefColNames>truck_reg_number</RefColNames>
     </foreign-key>
-    <foreign-key id="282" parent="235" name="trips_users_user_email_fk">
+    <foreign-key id="284" parent="235" name="trips_users_user_email_fk">
       <ColNames>trip_manager</ColNames>
       <RefSchemaName>logistic_system</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>user_email</RefColNames>
     </foreign-key>
-    <column id="283" parent="236" name="truck_reg_number">
+    <column id="285" parent="236" name="truck_reg_number">
       <Position>1</Position>
       <DataType>char(7)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="236" name="truck_in_order">
+    <column id="286" parent="236" name="truck_in_order">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="236" name="truck_capacity">
+    <column id="287" parent="236" name="truck_capacity">
       <Position>3</Position>
       <DataType>tinyint(4)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="236" name="truck_quantity_of_drivers">
+    <column id="288" parent="236" name="truck_quantity_of_drivers">
       <Position>4</Position>
       <DataType>tinyint(4)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="236" name="truck_reg_date">
+    <column id="289" parent="236" name="truck_reg_date">
       <Position>5</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="236" name="truck_current_location">
+    <column id="290" parent="236" name="truck_current_location">
       <Position>6</Position>
       <DataType>smallint(6)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="289" parent="236" name="truck_current_location">
+    <index id="291" parent="236" name="truck_current_location">
       <ColNames>truck_current_location</ColNames>
     </index>
-    <key id="290" parent="236" name="PRIMARY">
+    <key id="292" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>truck_reg_number</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="291" parent="236" name="trucks_ibfk_1">
+    <foreign-key id="293" parent="236" name="trucks_ibfk_1">
       <ColNames>truck_current_location</ColNames>
       <RefSchemaName>logistic_system</RefSchemaName>
       <RefTableName>cities</RefTableName>
       <RefColNames>city_id</RefColNames>
     </foreign-key>
-    <column id="292" parent="237" name="user_email">
+    <column id="294" parent="237" name="user_email">
       <Position>1</Position>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="237" name="user_password">
+    <column id="295" parent="237" name="user_password">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="237" name="user_name">
+    <column id="296" parent="237" name="user_name">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="295" parent="237" name="user_surname">
+    <column id="297" parent="237" name="user_surname">
       <Position>4</Position>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="296" parent="237" name="user_reg_date">
+    <column id="298" parent="237" name="user_reg_date">
       <Position>5</Position>
       <DataType>timestamp|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="237" name="user_role">
+    <column id="299" parent="237" name="user_role">
       <Position>6</Position>
       <DataType>tinyint(1)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="298" parent="237" name="user_phone_number">
+    <column id="300" parent="237" name="user_phone_number">
       <Position>7</Position>
       <DataType>varchar(200)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="299" parent="237" name="user_email">
+    <index id="301" parent="237" name="user_email">
       <ColNames>user_email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="300" parent="237" name="PRIMARY">
+    <key id="302" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_email</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="301" parent="237" name="user_email">
+    <key id="303" parent="237" name="user_email">
       <ColNames>user_email</ColNames>
       <UnderlyingIndexName>user_email</UnderlyingIndexName>
     </key>
